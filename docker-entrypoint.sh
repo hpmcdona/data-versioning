@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Skip system git config to avoid /etc/gitconfig issues
+export GIT_CONFIG_NOSYSTEM=1
+
+# Mark /app as safe directory for git
+git config --global --add safe.directory /app
+
 echo "Container is running!!!"
 echo "Architecture: $(uname -m)"
 echo "Python version: $(python --version)"

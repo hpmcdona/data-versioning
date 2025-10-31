@@ -47,6 +47,10 @@ RUN set -ex; \
 
 RUN mkdir -p /mnt/gcs_data && chown app:app /mnt/gcs_data
 
+# Configure git to avoid /etc/gitconfig issues
+RUN git config --system --unset-all core.autocrlf || true && \
+    rm -rf /etc/gitconfig && \
+    touch /etc/gitconfig
 
 # Switch to the new user
 #USER app # Keep the user as root since we need for mounting
